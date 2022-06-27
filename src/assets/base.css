@@ -1,0 +1,110 @@
+* {
+  padding: 0%;
+  margin: 0%;
+}
+body {
+  background-color: white;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.menu-horizontal {
+  background-color: #3A0C89;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.menu-horizontal-esquerdo {
+  color: white;
+  padding-left: 20px;
+  font-size: xx-large;
+  display: flex;
+  align-items: center;
+}
+
+.menu-horizontal-direito {
+  display: flex;
+  align-items: center;
+}
+
+.menu-horizontal-direito button {
+  width: 80px;
+  height: 30px;
+}
+
+.menu-horizontal-direito input {
+  height: 25px;
+  width: 250px;
+}
+
+.menu-vertical {
+  background-color: #26055E;
+  width: 170px;
+  height: 90vh;
+  font-size: x-large;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu span {
+  padding-top: 15px;
+}
+
+.menu span:hover {
+  color: darkgray;
+}
+
+.complemento {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: gray;
+  padding-top: 35px;
+  font-size: xx-large;
+}
+
+table tr td {
+  border: 2px solid white;
+  padding: 10px;
+}
+td button{
+  margin-left: 10px;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+.form-input {
+  margin-top: 0px;
+  display: flex;
+  justify-content: center;
+}
+form-input button {
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 10px;
+  background-color: rgb(227, 170, 0);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  cursor: pointer;
+}
+.list-autores {
+  display: flex;
+  justify-content: center;
+}
+.list-autores table {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+table tr td {
+  border: 1px solid #ffff;
+  padding: 10px;
+}
+/* .container{
+ display: flex; 
+} */
