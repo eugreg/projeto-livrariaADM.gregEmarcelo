@@ -45,6 +45,11 @@ body {
   font-size: x-large;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .menu {
   display: flex;
   flex-direction: column;
@@ -52,11 +57,11 @@ body {
 }
 
 .menu span {
-  padding-top: 15px;
+  padding-top: 10px;
 }
 
-.menu span:hover {
-  color: darkgray;
+a:hover {
+  color: rgb(131, 129, 129);
 }
 
 .complemento {
@@ -68,43 +73,55 @@ body {
   font-size: xx-large;
 }
 
+.titulo {
+  font-size: x-large;
+}
+
 table tr td {
-  border: 2px solid white;
+  border: 1px solid black;
   padding: 10px;
 }
-td button{
-  margin-left: 10px;
+
+thead, tbody, th, td {
+  border: 1px solid black;
+  padding: 10px;
 }
-.title {
+
+.titulo {
   display: flex;
   justify-content: center;
-  padding: 0;
 }
+
 .form-input {
-  margin-top: 0px;
   display: flex;
   justify-content: center;
 }
-form-input button {
-  border: 1px solid rgb(211, 211, 211);
-  border-radius: 10px;
-  background-color: rgb(227, 170, 0);
-  color: rgb(255, 255, 255);
-  font-weight: bold;
-  cursor: pointer;
-}
+
 .list-autores {
   display: flex;
   justify-content: center;
 }
-.list-autores table {
-  margin: 0 auto;
-  border-collapse: collapse;
+
+tr:nth-child(odd) {
+  background: lightgray;
 }
-table tr td {
-  border: 1px solid #ffff;
-  padding: 10px;
+
+tr:nth-child(even) {
+  background: white;  
 }
-/* .container{
- display: flex; 
-} */
+
+.input-pesquisar {
+  border-radius: 10px;
+  padding-left: 10px;
+}
+
+.botao-pesquisar {
+  border-radius: 10px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding-left: 400px;
+}
+

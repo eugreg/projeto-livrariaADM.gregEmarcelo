@@ -24,29 +24,33 @@ export default {
 <template>
   <main>
     <div class="container">
-      <div class="title">
-        <h2>Grereciamento de Livros</h2>
+      <div class="titulo">
+        <h2>Gerenciamento de Autores</h2>
       </div>
       <div class="form-input">
         <input type="text" v-model="novo_autor" />
         <button @click="salvar">Save</button>
       </div>
-      <div class="list-autores">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>LIVROS</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="autor in autores" :key="autor.id">
-              <td>{{ autor.id }}</td>
-              <td>{{ autor.autor }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    </div>
+    <div class="list-autores">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Autor</th>
+            <th>livro</th>
+            <th>Editora</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="autor in autores" :key="autor.id">
+            <td>{{ autor.id }}</td>
+            <td>{{ autor.autor }}</td>
+            <td>{{ autor.livro }}</td>
+            <td>{{ autor.editora }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </main>
 </template>

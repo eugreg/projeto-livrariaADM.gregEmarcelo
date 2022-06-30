@@ -7,8 +7,8 @@
         </router-link>
       </div>
       <div class="menu-horizontal-direito">
-        <input type="text" />
-        <button>Pesquisar</button>
+        <input type="text" class="input-pesquisar" />
+        <button class="botao-pesquisar">Pesquisar</button>
       </div>
     </div>
   </header>

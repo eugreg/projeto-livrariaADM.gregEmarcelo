@@ -9,10 +9,10 @@ export default {};
         <div class="complemento">
           <p>Adicionar</p>
         </div>
-        <RouterLink to="/adicionar"> <span>Adicionar</span> </RouterLink>
-        <RouterLink to="/livros"> <span>Livros</span> </RouterLink>
-        <span>Categorias</span>
-        <span>Autor</span>
+        <span><RouterLink to="/categorias">Categorias </RouterLink></span>
+        <span><RouterLink to="/livros"> Livros</RouterLink></span>
+        <span><RouterLink to="/editora">Editora </RouterLink></span>
+        <span><RouterLink to="/autores"> Autores</RouterLink></span>
       </div>
     </div>
   </aside>
