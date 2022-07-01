@@ -2,13 +2,11 @@
   <header>
     <div class="menu-horizontal">
       <div class="menu-horizontal-esquerdo">
-        <router-link to="/">
-          <span>ADM-Livros</span>
-        </router-link>
+        <span><RouterLink to="/">ADM-Livraria </RouterLink></span>
       </div>
       <div class="menu-horizontal-direito">
-        <input type="text" class="input-pesquisar" />
-        <button class="botao-pesquisar">Pesquisar</button>
+        <input type="text" />
+        <button>Pesquisar</button>
       </div>
     </div>
   </header>

@@ -5,10 +5,8 @@ export default {};
 <template>
   <aside>
     <div class="menu-vertical">
-      <div class="menu">
-        <div class="complemento">
-          <p>Adicionar</p>
-        </div>
+      <div class="menu-cima">
+        <p class="complemento">Adicionar</p>
         <span><RouterLink to="/categorias">Categorias </RouterLink></span>
         <span><RouterLink to="/livros"> Livros</RouterLink></span>
         <span><RouterLink to="/editora">Editora </RouterLink></span>

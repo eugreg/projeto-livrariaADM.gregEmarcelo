@@ -9,7 +9,7 @@ body {
 
 .menu-horizontal {
   background-color: #3A0C89;
-  height: 80px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -31,17 +31,20 @@ body {
 .menu-horizontal-direito button {
   width: 80px;
   height: 30px;
+  border-radius: 10px;
 }
 
 .menu-horizontal-direito input {
   height: 25px;
   width: 250px;
+  border-radius: 10px;
+  padding-left: 10px;
 }
 
 .menu-vertical {
   background-color: #26055E;
   width: 170px;
-  height: 90vh;
+  height: 91vh;
   font-size: x-large;
 }
 
@@ -50,13 +53,13 @@ a {
   color: white;
 }
 
-.menu {
+.menu-cima {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.menu span {
+.menu-cima span {
   padding-top: 10px;
 }
 
@@ -97,31 +100,82 @@ thead, tbody, th, td {
   justify-content: center;
 }
 
-.list-autores {
-  display: flex;
-  justify-content: center;
-}
-
 tr:nth-child(odd) {
   background: lightgray;
-}
-
-tr:nth-child(even) {
-  background: white;  
-}
-
-.input-pesquisar {
-  border-radius: 10px;
-  padding-left: 10px;
-}
-
-.botao-pesquisar {
-  border-radius: 10px;
 }
 
 main {
   display: flex;
   flex-direction: column;
-  padding-left: 400px;
+  padding-left: 300px;
+  padding-top: 20px;
 }
 
+.menu-baixo{
+  color: rgb(131, 129, 129);
+}
+
+.tabela-titulo {
+  width: 200px;
+}
+
+.tabela-titulo-id {
+  width: 350px;
+}
+
+.form-input {
+  margin-top: 10px;
+}
+
+.form-input input {
+  width: 350px;
+  height: 35px;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: larger;
+}
+
+.form-input button {
+  height: 37px;
+  border-radius: 10px;
+  width: 50px;;
+}
+
+.block {
+  min-width: 300px;
+  height: 200px;
+  border: 1px solid black;
+  border-radius: 30px;
+  border: 2px solid black;
+  padding: 20px;
+  margin: 20px;
+  background-color: lightgrey
+}
+
+.conteudo-livro {
+  display: flex;
+  justify-content: center;
+  padding-left: 80px;
+  padding-top: 80px;
+}
+
+.block_2 {
+  min-width: 300px;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 30px;
+  border: 2px solid black;
+  padding: 20px;
+  margin: 20px;
+  background-color: lightgrey
+}
+
+.conteudo-secundario {
+  padding-left: 80px;
+}
+
+.titulo-geral {
+  font-size: 55px;
+  padding-top: 30px;
+  padding-left: 600px;
+}
