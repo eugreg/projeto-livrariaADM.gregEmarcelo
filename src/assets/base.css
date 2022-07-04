@@ -107,7 +107,7 @@ tr:nth-child(odd) {
 main {
   display: flex;
   flex-direction: column;
-  padding-left: 300px;
+  padding-left: 200px;
   padding-top: 20px;
 }
 
@@ -128,11 +128,18 @@ main {
 }
 
 .form-input input {
-  width: 350px;
+  width: 600px;
   height: 35px;
   border-radius: 10px;
   padding-left: 10px;
   font-size: larger;
+  margin-top: 10px;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
 }
 
 .form-input button {
@@ -178,4 +185,40 @@ main {
   font-size: 55px;
   padding-top: 30px;
   padding-left: 600px;
+}
+
+.geren_tudo {
+  padding-left: 350px;
+}
+
+.title {
+  padding-left: 80px;
+  font-size: 20px;
+}
+
+.form-input select {
+  margin-top: 10px;
+  padding-left: 5px;
+  font-size: 15px;
+  color: rgb(131, 129, 129);
+  width: 615px;
+  height: 40px;
+  border-radius: 10px;
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+}
+
+.form-input button {
+  width: 200px;
+  margin-left: 200px;
+  margin-top: 20px;
+}
+
+.form-input {
+  padding-top: 50px;
+}
+
+.tabela {
+  padding-top: 50px;
 }

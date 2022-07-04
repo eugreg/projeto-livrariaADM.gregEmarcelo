@@ -3,19 +3,21 @@ import { v4 as uuidv4 } from "uuid";
 export default {
   data() {
     return {
-      autores: [],
-      novo_autor: "",
+      editores: [],
+      nova_editora: "",
     };
   },
   methods: {
     salvar() {
-      if (this.novo_autor !== "") {
+      if (this.nova_editora !== "", this.novo_site !=="") {
         const novo_id = uuidv4();
-        this.autores.push({
+        this.editores.push({
           id: novo_id,
-          autor: this.novo_autor,
+          editora: this.nova_editora,
+          site: this.novo_site,
         });
-        this.novo_autor = "";
+        this.nova_editora = "";
+        this.novo_site = "";
       }
     },
   },
@@ -26,29 +28,28 @@ export default {
   <main>
     <div class="container">
       <div class="titulo">
-        <h2>Gerenciamento de Autores</h2>
+        <h2>Gerenciamento de Editores</h2>
       </div>
       <div class="form-input">
-        <input type="text" v-model="novo_autor" />
+        <input type="text" v-model="nova_editora" placeholder="editores"/>
+        <input type="text" v-model="novo_site" placeholder="site"/>
         <button @click="salvar">Save</button>
       </div>
     </div>
     <div class="list-autores">
       <table>
         <thead>
-          <tr>
-            <th class="tabela-titulo-id">ID</th>
-            <th class="tabela-titulo">Autor</th>
-            <th class="tabela-titulo">livro</th>
-            <th class="tabela-titulo">Editora</th>
+          <tr class="tabela-titulo">
+            <th id="tabela-titulo-id">ID</th>
+            <th>Editora</th>
+            <th>site</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="autor in autores" :key="autor.id">
-            <td>{{ autor.id }}</td>
-            <td>{{ autor.autor }}</td>
-            <td>{{ autor.livro }}</td>
-            <td>{{ autor.editora }}</td>
+          <tr v-for="editora in editores" :key="editora.id">
+            <td>{{ editora.id }}</td>
+            <td>{{ editora.editora }}</td>
+            <td>{{ editora.site }}</td>
           </tr>
         </tbody>
       </table>
