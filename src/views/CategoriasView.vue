@@ -18,6 +18,10 @@ export default {
         this.nova_categoria = "";
       }
     },
+    excluir(categoria) {
+      const indice = this.categorias.indexOf(categoria);
+      this.categorias.splice(indice, 1);
+    },
   },
 };
 </script>
@@ -45,6 +49,9 @@ export default {
           <tr v-for="categoria in categorias" :key="categoria.id">
             <td>{{ categoria.id }}</td>
             <td>{{ categoria.categoria }}</td>
+            <td>
+              <button @click="excluir(categoria)">excluir</button>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -18,6 +18,10 @@ export default {
         this.novo_autor = "";
       }
     },
+     excluir(autor) {
+      const indice = this.autores.indexOf(autor);
+      this.autores.splice(indice, 1);
+    },
   },
 };
 </script>
@@ -45,6 +49,9 @@ export default {
           <tr v-for="autor in autores" :key="autor.id">
             <td>{{ autor.id }}</td>
             <td>{{ autor.autor }}</td>
+            <td>
+              <button @click="excluir(autor)">excluir</button>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -155,7 +155,6 @@
               <td>{{ livro.quantidade }}</td>
               <td>{{ livro.preco }}</td>
               <td>
-                <button>editar</button>
                 <button @click="excluir(livro)">excluir</button>
               </td>
             </tr>

@@ -20,6 +20,10 @@ export default {
         this.novo_site = "";
       }
     },
+     excluir(editora) {
+      const indice = this.editores.indexOf(editora);
+      this.editores.splice(indice, 1);
+    },
   },
 };
 </script>
@@ -50,6 +54,9 @@ export default {
             <td>{{ editora.id }}</td>
             <td>{{ editora.editora }}</td>
             <td>{{ editora.site }}</td>
+            <td>
+              <button @click="excluir(editores)">excluir</button>
+            </td>
           </tr>
         </tbody>
       </table>
