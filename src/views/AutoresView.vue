@@ -39,16 +39,12 @@ export default {
           <tr>
             <th class="tabela-titulo-id">ID</th>
             <th class="tabela-titulo">Autor</th>
-            <th class="tabela-titulo">livro</th>
-            <th class="tabela-titulo">Editora</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="autor in autores" :key="autor.id">
             <td>{{ autor.id }}</td>
             <td>{{ autor.autor }}</td>
-            <td>{{ autor.livro }}</td>
-            <td>{{ autor.editora }}</td>
           </tr>
         </tbody>
       </table>

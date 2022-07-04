@@ -3,19 +3,19 @@ import { v4 as uuidv4 } from "uuid";
 export default {
   data() {
     return {
-      autores: [],
-      novo_autor: "",
+      categorias: [],
+      nova_categoria: "",
     };
   },
   methods: {
     salvar() {
-      if (this.novo_autor !== "") {
+      if (this.nova_categoria !== "") {
         const novo_id = uuidv4();
-        this.autores.push({
+        this.categorias.push({
           id: novo_id,
-          autor: this.novo_autor,
+          categoria: this.nova_categoria,
         });
-        this.novo_autor = "";
+        this.nova_categoria = "";
       }
     },
   },
@@ -26,29 +26,25 @@ export default {
   <main>
     <div class="container">
       <div class="titulo">
-        <h2>Gerenciamento de Autores</h2>
+        <h2>Gerenciamento de categorias</h2>
       </div>
       <div class="form-input">
-        <input type="text" v-model="novo_autor" />
+        <input type="text" v-model="nova_categoria" />
         <button @click="salvar">Save</button>
       </div>
     </div>
     <div class="list-autores">
       <table>
         <thead>
-          <tr>
-            <th class="tabela-titulo-id">ID</th>
-            <th class="tabela-titulo">Autor</th>
-            <th class="tabela-titulo">livro</th>
-            <th class="tabela-titulo">Editora</th>
+          <tr class="tabela-titulo">
+            <th id="tabela-titlo-id">ID</th>
+            <th>categorias</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="autor in autores" :key="autor.id">
-            <td>{{ autor.id }}</td>
-            <td>{{ autor.autor }}</td>
-            <td>{{ autor.livro }}</td>
-            <td>{{ autor.editora }}</td>
+          <tr v-for="categoria in categorias" :key="categoria.id">
+            <td>{{ categoria.id }}</td>
+            <td>{{ categoria.categoria }}</td>
           </tr>
         </tbody>
       </table>
