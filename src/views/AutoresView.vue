@@ -1,6 +1,6 @@
 <script setup>
-import TabelaAutores from '../components/TabelaAutores.vue';
+import TabelaAutores from "../components/TabelaAutores.vue";
 </script>
 <template>
-<TabelaAutores />
+  <TabelaAutores />
 </template>

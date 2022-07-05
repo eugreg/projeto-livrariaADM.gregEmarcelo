@@ -1,6 +1,6 @@
 <script setup>
-import TabelaEditores from '../components/TabelaEditores.vue';
+import TabelaEditores from "../components/TabelaEditores.vue";
 </script>
 <template>
-<TabelaEditores />
+  <TabelaEditores />
 </template>

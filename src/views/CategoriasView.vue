@@ -1,6 +1,6 @@
 <script setup>
-import TabelaCategorias from '../components/TabelaCategorias.vue';
+import TabelaCategorias from "../components/TabelaCategorias.vue";
 </script>
 <template>
-<TabelaCategorias />
+  <TabelaCategorias />
 </template>

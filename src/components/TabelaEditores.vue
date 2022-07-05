@@ -9,7 +9,7 @@ export default {
   },
   methods: {
     salvar() {
-      if (this.nova_editora !== "", this.novo_site !=="") {
+      if ((this.nova_editora !== "", this.novo_site !== "")) {
         const novo_id = uuidv4();
         this.editores.push({
           id: novo_id,
@@ -20,7 +20,7 @@ export default {
         this.novo_site = "";
       }
     },
-     excluir(editora) {
+    excluir(editora) {
       const indice = this.editores.indexOf(editora);
       this.editores.splice(indice, 1);
     },
@@ -35,8 +35,8 @@ export default {
         <h2>Gerenciamento de Editores</h2>
       </div>
       <div class="form-input">
-        <input type="text" v-model="nova_editora" placeholder="editores"/>
-        <input type="text" v-model="novo_site" placeholder="site"/>
+        <input type="text" v-model="nova_editora" placeholder="editores" />
+        <input type="text" v-model="novo_site" placeholder="site" />
         <button @click="salvar">Save</button>
       </div>
     </div>
