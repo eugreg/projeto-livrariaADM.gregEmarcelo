@@ -33,7 +33,7 @@ export default {
         <h2>Gerenciamento de categorias</h2>
       </div>
       <div class="form-input">
-        <input type="text" v-model="nova_categoria" />
+        <input type="text" v-model="nova_categoria" placeholder="insire categorias"/>
         <button @click="salvar">Save</button>
       </div>
     </div>

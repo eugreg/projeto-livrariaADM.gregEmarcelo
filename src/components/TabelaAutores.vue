@@ -33,7 +33,7 @@ export default {
         <h2>Gerenciamento de Autores</h2>
       </div>
       <div class="form-input">
-        <input type="text" v-model="novo_autor" />
+        <input type="text" v-model="novo_autor" placeholder="insire autor "/>
         <button @click="salvar">Save</button>
       </div>
     </div>
