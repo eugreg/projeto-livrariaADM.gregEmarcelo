@@ -1,27 +1,34 @@
 <script>
-import { v4 as uuidv4 } from "uuid";
+import AutoresApi from "@/api/autores.js";
+const autoresApi = new AutoresApi();
 export default {
   data() {
-    return {
+    return{
+      autor: {},
       autores: [],
-      novo_autor: "",
-    };
+    };  
   },
+  async created(){
+    this.autores = await autoresApi.buscarTodosOsAutores();
+  }, 
   methods: {
-    salvar() {
-      if (this.novo_autor !== "") {
-        const novo_id = uuidv4();
-        this.autores.push({
-          id: novo_id,
-          autor: this.novo_autor,
-        });
-        this.novo_autor = "";
+    async salvar() {
+      if (this.autor.id){
+        await autoresApi.atualizarAutor(this.autor);
+      } else {
+        await autoresApi.adicionarAutor(this.autor);
       }
+      this.autores = await autoresApi.buscarTodosOsAutores();
+      this.autor = {};
     },
-    excluir(autor) {
-      const indice = this.autores.indexOf(autor);
-      this.autores.splice(indice, 1);
+    async excluir(autor){
+      await autoresApi.excluirAutor(autor.id);
+      this.autores = await autoresApi.buscarTodosOsAutores();
     },
+     editar(autor) {
+      Object.assign(this.autor, autor);
+    },
+    
   },
 };
 </script>
@@ -33,7 +40,7 @@ export default {
         <h2>Gerenciamento de Autores</h2>
       </div>
       <div class="form-input">
-        <input type="text" v-model="novo_autor" placeholder="insire autor " />
+        <input type="text" v-model="autor.autor" placeholder="insire autor " />
         <button @click="salvar">Save</button>
       </div>
     </div>
@@ -51,6 +58,7 @@ export default {
             <td>{{ autor.autor }}</td>
             <td>
               <button @click="excluir(autor)">excluir</button>
+              <button @click="editar(autor)">editar</button>
             </td>
           </tr>
         </tbody>
