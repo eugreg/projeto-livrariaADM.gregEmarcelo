@@ -1,28 +1,32 @@
 <script>
-import { v4 as uuidv4 } from "uuid";
+import EditoresApi from "@/api/editores.js";
+const editoresApi = new EditoresApi();
 export default {
   data() {
     return {
+      editora: {},
       editores: [],
-      nova_editora: "",
     };
   },
+  async created() {
+    this.editores = await editoresApi.buscarTodasAsEditoras();
+  },
   methods: {
-    salvar() {
-      if ((this.nova_editora !== "", this.novo_site !== "")) {
-        const novo_id = uuidv4();
-        this.editores.push({
-          id: novo_id,
-          editora: this.nova_editora,
-          site: this.novo_site,
-        });
-        this.nova_editora = "";
-        this.novo_site = "";
+    async salvar() {
+      if (this.editora.id) {
+        await editoresApi.atualizarEditora(this.editora);
+      } else {
+        await editoresApi.adicionarEditora(this.editora);
       }
+      this.editores = await editoresApi.buscarTodasAsEditoras();
+      this.editora = {};
     },
-    excluir(editora) {
-      const indice = this.editores.indexOf(editora);
-      this.editores.splice(indice, 1);
+    async excluir(editora) {
+      await editoresApi.excluirEditora(editora.id);
+      this.editores = await editoresApi.buscarTodasAsEditoras();
+    },
+    editar(editora) {
+      Object.assign(this.editora, editora);
     },
   },
 };
@@ -35,8 +39,8 @@ export default {
         <h2>Gerenciamento de Editores</h2>
       </div>
       <div class="form-input">
-        <input type="text" v-model="nova_editora" placeholder="editores" />
-        <input type="text" v-model="novo_site" placeholder="site" />
+        <input type="text" v-model="editora.editora" placeholder="editores" />
+        <input type="text" v-model="editora.site" placeholder="site" />
         <button @click="salvar">Save</button>
       </div>
     </div>
@@ -47,6 +51,7 @@ export default {
             <th id="tabela-titulo-id">ID</th>
             <th>Editora</th>
             <th>site</th>
+            <th>Ação</th>
           </tr>
         </thead>
         <tbody>
@@ -55,7 +60,8 @@ export default {
             <td>{{ editora.editora }}</td>
             <td>{{ editora.site }}</td>
             <td>
-              <button @click="excluir(editores)">excluir</button>
+              <button @click="excluir(editora)">excluir</button>
+              <button @click="editar(editora)">editar</button>
             </td>
           </tr>
         </tbody>

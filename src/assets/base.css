@@ -103,12 +103,8 @@ thead, tbody, th, td {
 tr:nth-child(odd) {
   background: lightgray;
 }
-
 main {
-  display: flex;
-  flex-direction: column;
-  padding-left: 200px;
-  padding-top: 20px;
+  margin: 0 auto;
 }
 
 .menu-baixo{
@@ -222,4 +218,15 @@ main {
 
 .tabela {
   padding-top: 50px;
+}
+
+th, td {
+  width: 200px;
+}
+
+td button {
+  margin-left: 30px;
+  width: 50px;
+  border: 1px solid black;
+
 }

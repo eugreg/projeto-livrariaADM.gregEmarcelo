@@ -3,17 +3,17 @@ import AutoresApi from "@/api/autores.js";
 const autoresApi = new AutoresApi();
 export default {
   data() {
-    return{
+    return {
       autor: {},
       autores: [],
-    };  
+    };
   },
-  async created(){
+  async created() {
     this.autores = await autoresApi.buscarTodosOsAutores();
-  }, 
+  },
   methods: {
     async salvar() {
-      if (this.autor.id){
+      if (this.autor.id) {
         await autoresApi.atualizarAutor(this.autor);
       } else {
         await autoresApi.adicionarAutor(this.autor);
@@ -21,20 +21,19 @@ export default {
       this.autores = await autoresApi.buscarTodosOsAutores();
       this.autor = {};
     },
-    async excluir(autor){
+    async excluir(autor) {
       await autoresApi.excluirAutor(autor.id);
       this.autores = await autoresApi.buscarTodosOsAutores();
     },
-     editar(autor) {
+    editar(autor) {
       Object.assign(this.autor, autor);
     },
-    
   },
 };
 </script>
 
 <template>
-  <main>
+  <main c lass="center">
     <div class="container">
       <div class="titulo">
         <h2>Gerenciamento de Autores</h2>
@@ -48,8 +47,9 @@ export default {
       <table>
         <thead>
           <tr>
-            <th class="tabela-titulo-id">ID</th>
-            <th class="tabela-titulo">Autor</th>
+            <th>ID</th>
+            <th>Autor</th>
+            <th>Ação</th>
           </tr>
         </thead>
         <tbody>

@@ -47,6 +47,7 @@ export default {
           <tr class="tabela-titulo">
             <th id="tabela-titlo-id">ID</th>
             <th>categorias</th>
+            <th>Ação</th>
           </tr>
         </thead>
         <tbody>
