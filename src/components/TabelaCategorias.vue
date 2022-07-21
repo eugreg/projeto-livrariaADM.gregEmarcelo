@@ -1,27 +1,34 @@
 <script>
-import { v4 as uuidv4 } from "uuid";
+import CategoriasApi from "@/api/categorias.js";
+const categoriasApi = new CategoriasApi();
 export default {
   data() {
-    return {
+    return{
+      categoria: {},
       categorias: [],
-      nova_categoria: "",
-    };
+    };  
   },
+  async created(){
+    this.categoria = await categoriasApi.buscarTodasAsCategorias();
+  }, 
   methods: {
-    salvar() {
-      if (this.nova_categoria !== "") {
-        const novo_id = uuidv4();
-        this.categorias.push({
-          id: novo_id,
-          categoria: this.nova_categoria,
-        });
-        this.nova_categoria = "";
+    async salvar() {
+      if (this.categoria.id){
+        await categoriasApi.atualizarCategoria(this.categoria);
+      } else {
+        await categoriasApi.adicionarCategoria(this.categoria);
       }
+      this.categorias = await categoriasApi.buscarTodasAsCategorias();
+      this.categoria = {};
     },
-    excluir(categoria) {
-      const indice = this.categorias.indexOf(categoria);
-      this.categorias.splice(indice, 1);
+    async excluir(categoria){
+      await categoriasApi.excluirCategoria(categoria.id);
+      this.categorias = await categoriasApi.buscarTodasAsCategorias();
     },
+     editar(categoria) {
+      Object.assign(this.categoria, categoria);
+    },
+    
   },
 };
 </script>
@@ -35,7 +42,7 @@ export default {
       <div class="form-input">
         <input
           type="text"
-          v-model="nova_categoria"
+          v-model="categoria.categoria"
           placeholder="insire categorias"
         />
         <button @click="salvar">Save</button>
@@ -47,7 +54,6 @@ export default {
           <tr class="tabela-titulo">
             <th id="tabela-titlo-id">ID</th>
             <th>categorias</th>
-            <th>Ação</th>
           </tr>
         </thead>
         <tbody>
@@ -56,6 +62,7 @@ export default {
             <td>{{ categoria.categoria }}</td>
             <td>
               <button @click="excluir(categoria)">excluir</button>
+              <button @click="editar(categoria)">editar</button>
             </td>
           </tr>
         </tbody>
