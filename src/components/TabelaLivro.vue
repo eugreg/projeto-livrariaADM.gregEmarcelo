@@ -1,76 +1,38 @@
 <script>
-import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 export default {
   data() {
     return {
-      categorias: [
-        {
-          descricao: "Economia",
-        },
-        {
-          descricao: "Estilo de Vida",
-        },
-        {
-          descricao: "Biografias, Histórias Reais e True crime",
-        },
-        {
-          descricao: "Acadêmicos",
-        },
-        {
-          descricao: "Ficção",
-        },
-        {
-          descricao: "HQs",
-        },
-        {
-          descricao: "Romance",
-        },
-        {
-          descricao: "Policial, Suspense e Mistério",
-        },
-      ],
       livros: [],
-      novo_livro: "",
-      novo_pre: "",
-      novo_quant: "",
-      novo_autor_ID: "",
-      nova_categoria: "",
-      novo_editora_ID: "",
+      livro: {},
+      categorias: [],
+      editores: [],
+      editora:{},
     };
   },
+  async created() {
+    await this.buscarTodosOsLivros();
+    await this.buscarTodosAsCategorias();
+    await this.buscarTodosOsEditores();
+  },
   methods: {
-    salvar() {
-      if (
-        (this.novo_livro !== "",
-        this.novo_pre !== "",
-        this.novo_quant !== "",
-        this.novo_autor_ID !== "",
-        this.nova_categoria !== "",
-        this.novo_editora_ID !== "")
-      ) {
-        const novo_id = uuidv4();
-        const novo_ISBN = uuidv4();
-        this.livros.push({
-          id: novo_id,
-          nome: this.novo_livro,
-          quantidade: this.novo_quant,
-          preco: this.novo_pre,
-          ISBN: novo_ISBN,
-          Categoria: this.nova_categoria,
-          Editora_ID: this.novo_editora_ID,
-          Autor_ID: this.novo_autor_ID,
-        });
-        this.novo_livro = "";
-        this.novo_quant = "";
-        this.novo_pre = "";
-        this.novo_autor_ID = "";
-        this.nova_categoria = "";
-        this.novo_editora_ID = "";
-      }
+    async buscarTodosAsCategorias() {
+      const categorias = await axios.get("http://localhost:4000/categorias");
+      this.categorias = categorias.data;
     },
-    excluir(livro) {
-      const indice = this.livros.indexOf(livro);
-      this.livros.splice(indice, 1);
+    async buscarTodosOsEditores() {
+      const editores = await axios.get("http://localhost:4000/editora");
+      this.editores = editores.data;
+    },
+    async buscarTodosOsLivros() {
+      const resposta = await axios.get(
+        "http://localhost:4000/livros?expand=categorias"
+      );
+      this.livros = resposta.data;
+    },
+    async salvar() {
+      await axios.post("http://localhost:4000/livros", this.livro);
+      await this.buscarTodosOsLivros();
     },
   },
 };
@@ -87,26 +49,24 @@ export default {
           <input
             id="input_tit"
             type="text"
-            v-model="novo_livro"
+            v-model="livro.titulo"
             placeholder="Título"
           />
           <div class="select_categorias">
-            <select name="cat" id="categorias" v-model="nova_categoria">
-              <option disabled value="">Escolha uma categoria</option>
+            <select name="cat" id="categorias" v-model="categoria.categoria">
               <option
-                v-for="descricao of categorias"
-                :key="descricao.descricao"
+                v-for="categoria in categorias"
+                :key="categoria.id"
+                :value="categoria.id"
               >
-                {{ descricao.descricao }}
+                {{ Categoria.Categoria }} {{ Categoria.id }}
               </option>
             </select>
+            <select v-model="editora.editora">
+               <option v-for="editora in editora" :key="editora.id" :value="editora.id"> {{editora.editora}} ({{editora.site}})</option>
+            </select>
           </div>
-          <input
-            id="input_tit"
-            type="text"
-            v-model="novo_editora_ID"
-            placeholder="ID Editora"
-          />
+            
           <input
             id="input_tit"
             type="text"
@@ -137,7 +97,7 @@ export default {
               <th>Título</th>
               <th>ISBN</th>
               <th>Categoria</th>
-              <th>Editora_ID</th>
+              <th>editora</th>
               <th>Autor_ID</th>
               <th>Quantidade</th>
               <th>Preço</th>
@@ -150,10 +110,12 @@ export default {
               <td>{{ livro.nome }}</td>
               <td>{{ livro.ISBN }}</td>
               <td>{{ livro.Categoria }}</td>
-              <td>{{ livro.Editora_ID }}</td>
+              <td>{{ livro.editora }}</td>
               <td>{{ livro.Autor_ID }}</td>
               <td>{{ livro.quantidade }}</td>
               <td>{{ livro.preco }}</td>
+              <td>{{ livro.categoria.categoria }} ({{ livro.categoria.id }})
+              </td>
               <td>
                 <button @click="excluir(livro)">excluir</button>
               </td>
