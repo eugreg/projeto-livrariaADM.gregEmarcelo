@@ -1,43 +1,54 @@
 <script>
-import axios from "axios";
+import LivrosApi from "@/api/livros.js";
+import AutoresApi from "@/api/autores.js";
+import CategoriasApi from "@/api/categorias.js";
+import EditoresApi from "@/api/editores.js";
+const livrosApi = new LivrosApi();
+const autoresApi = new AutoresApi();
+const categoriasApi = new CategoriasApi();
+const editoresApi = new EditoresApi();
 export default {
   data() {
     return {
-      livros: [],
       livro: {},
+      livros: [],
+      categoria: {},
       categorias: [],
-      editores: [],
-      editora:{},
+      editora: {},
+      editoras: [],
+      autor: {},
+      autores: [],
     };
   },
   async created() {
-    await this.buscarTodosOsLivros();
-    await this.buscarTodosAsCategorias();
-    await this.buscarTodosOsEditores();
+    this.livros = await livrosApi.buscarTodosOsLivro();
+    this.autores = await autoresApi.buscarTodosOsAutores();
+    this.categorias = await categoriasApi.buscarTodasAsCategorias();
+    this.editoras = await editoresApi.buscarTodasAsEditoras();
   },
   methods: {
-    async buscarTodosAsCategorias() {
-      const categorias = await axios.get("http://localhost:4000/categorias");
-      this.categorias = categorias.data;
-    },
-    async buscarTodosOsEditores() {
-      const editores = await axios.get("http://localhost:4000/editora");
-      this.editores = editores.data;
-    },
-    async buscarTodosOsLivros() {
-      const resposta = await axios.get(
-        "http://localhost:4000/livros?expand=categorias"
-      );
-      this.livros = resposta.data;
-    },
     async salvar() {
-      await axios.post("http://localhost:4000/livros", this.livro);
-      await this.buscarTodosOsLivros();
+      if (this.livro.id) {
+        await livrosApi.atualizarLivro(this.livro);
+      } else {
+        await livrosApi.adicionarLivro(this.livro);
+      }
+      this.livros = await livrosApi.buscarTodosOsLivro();
+      this.categorias = await categoriasApi.buscarTodasAsCategorias();
+      this.editoras = await editoresApi.buscarTodasAsEditoras();
+      this.autores = await autoresApi.buscarTodosOsAutores();
+      this.livro = {};
+    },
+    async excluir(livro) {
+      await livrosApi.excluirLivro(livro.id);
+      this.livros = await livrosApi.buscarTodosOsLivro();
+    },
+    editar(livro) {
+      Object.assign(this.livro, livro);
     },
   },
 };
 </script>
-
 <template>
   <main>
     <div class="container">
@@ -53,36 +64,50 @@ export default {
             placeholder="Título"
           />
           <div class="select_categorias">
-            <select name="cat" id="categorias" v-model="categoria.categoria">
+            <select name="cat" id="categorias" v-model="livro.categoria">
+              <option disabled value="">escolha uma categoria</option>
               <option
-                v-for="categoria in categorias"
+                v-for="categoria of categorias"
                 :key="categoria.id"
-                :value="categoria.id"
+                :value="categoria.descricao"
               >
-                {{ Categoria.Categoria }} {{ Categoria.id }}
+                {{ categoria.descricao }}
               </option>
             </select>
-            <select v-model="editora.editora">
-               <option v-for="editora in editora" :key="editora.id" :value="editora.id"> {{editora.editora}} ({{editora.site}})</option>
+            <select v-model="livro.autor">
+              <option disabled value="">escolha uma categoria</option>
+              <option
+                v-for="autor of autores"
+                :key="autor.id"
+                :value="autor.nome"
+              >
+                {{ autor.nome }}
+              </option>
             </select>
           </div>
-            
-          <input
-            id="input_tit"
-            type="text"
-            v-model="novo_autor_ID"
-            placeholder="ID Autor"
-          />
+          <div class="select_autor">
+            <select v-model="livro.editora">
+              <option disabled value="">escolha uma categoria</option>
+              <option
+                v-for="editora of editoras"
+                :key="editora.id"
+                :value="editora.nome"
+              >
+                {{ editora.nome }}
+              </option>
+            </select>
+          </div>
+
           <input
             id="input_quant"
             type="number"
-            v-model="novo_quant"
+            v-model="livro.quantidade"
             placeholder="Quantidade"
           />
           <input
             id="input_pre"
             type="number"
-            v-model="novo_pre"
+            v-model="livro.preco"
             placeholder="Preço"
           />
           <button @click="salvar">Salvar</button>
@@ -94,33 +119,31 @@ export default {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Título</th>
-              <th>ISBN</th>
+              <th>Titulo</th>
               <th>Categoria</th>
               <th>editora</th>
-              <th>Autor_ID</th>
+              <th>Autor</th>
               <th>Quantidade</th>
-              <th>Preço</th>
+              <th>Preco</th>
               <th>Ação</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="livro in livros" :key="livro">
+
               <td>{{ livro.id }}</td>
-              <td>{{ livro.nome }}</td>
-              <td>{{ livro.ISBN }}</td>
+              <td>{{ livro.titulo }}</td>
               <td>{{ livro.Categoria }}</td>
               <td>{{ livro.editora }}</td>
-              <td>{{ livro.Autor_ID }}</td>
+              <td>{{ livro.Autor }}</td>
               <td>{{ livro.quantidade }}</td>
               <td>{{ livro.preco }}</td>
-              <td>{{ livro.categoria.categoria }} ({{ livro.categoria.id }})
-              </td>
               <td>
                 <button @click="excluir(livro)">excluir</button>
+                 <button @click="editar(livro)">editar</button>
               </td>
             </tr>
-          </tbody>
+          </tbody>	
         </table>
       </div>
     </div>
