@@ -1,25 +1,29 @@
 <script>
 import BlocoConteudo from "../components/BlocoConteudo.vue";
-import BlocoConteudo2 from "../components/BlocoConteudo2.vue";
 export default {
   components: {
     BlocoConteudo,
-    BlocoConteudo2,
   },
 };
 </script>
 
 <template>
-  <div class="titulo-geral">
-    <p>Administração Geral</p>
-  </div>
-  <div class="conteudo-livro">
-    <BlocoConteudo />
-    <BlocoConteudo />
-    <BlocoConteudo />
-    <BlocoConteudo />
-  </div>
-  <div class="conteudo-secundario">
-    <BlocoConteudo2 />
-  </div>
+  <main>
+    <div class="livros">
+      <div>
+         <h2>Livros Adicionados</h2>
+      </div>
+       <div class="conteudo">
+        <div cass="cont1">
+        <BlocoConteudo />
+        <BlocoConteudo />
+        </div>
+        <div cass="cont2">
+        <BlocoConteudo />
+        <BlocoConteudo />
+        </div>
+       </div>
+    </div>
+  </main>
 </template>
+

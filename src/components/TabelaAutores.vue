@@ -33,8 +33,8 @@ export default {
 </script>
 
 <template>
-  <main c lass="center">
-    <div class="container">
+  <main class="forms-geral-tabela">
+    <div class="forms-geral">
       <div class="titulo">
         <h2>Gerenciamento de Autores</h2>
       </div>

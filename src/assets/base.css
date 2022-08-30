@@ -2,17 +2,18 @@
   padding: 0%;
   margin: 0%;
 }
+
 body {
   background-color: white;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .menu-horizontal {
-  background-color: #3A0C89;
-  height: 70px;
+  background-color: #24559E;
+  border: #6399EB solid 1px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
 }
 
 .menu-horizontal-esquerdo {
@@ -30,20 +31,22 @@ body {
 
 .menu-horizontal-direito button {
   width: 80px;
-  height: 30px;
-  border-radius: 10px;
+  height: 27px;
+  border-radius: 8px;
+  margin: 2px;
 }
 
 .menu-horizontal-direito input {
   height: 25px;
   width: 250px;
-  border-radius: 10px;
+  border-radius: 5px;
   padding-left: 10px;
 }
 
 .menu-vertical {
-  background-color: #26055E;
-  width: 170px;
+  background-color: #24559E;
+  border: #6399EB solid 1px;
+  width: 160px;
   height: 91vh;
   font-size: x-large;
 }
@@ -229,4 +232,18 @@ td button {
   width: 50px;
   border: 1px solid black;
 
+}
+
+.forms-geral{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px;
+}
+
+.forms-geral-tabela{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 50px;
 }

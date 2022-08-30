@@ -5,21 +5,13 @@ import MenuVertical from "./components/MenuVertical.vue";
 </script>
 
 <template>
-  <HeaderComp />
-  <div class="app-main">
-    <MenuVertical />
-    <main class="container">
-      <RouterView />
-    </main>
-  </div>
+  <body>
+    <HeaderComp />
+      <MenuVertical />
+      <main class="container">
+        <RouterView />
+      </main>
+  </body>
+
 </template>
 
-<style>
-.app-main {
-  display: flex;
-}
-
-.container {
-  padding: 20px;
-}
-</style>

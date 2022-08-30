@@ -34,8 +34,8 @@ export default {
 </script>
 
 <template>
-  <main>
-    <div class="container">
+  <main class="forms-geral-tabela">
+    <div class="forms-geral">
       <div class="titulo">
         <h2>Gerenciamento de categorias</h2>
       </div>

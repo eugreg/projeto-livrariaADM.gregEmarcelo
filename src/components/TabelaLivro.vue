@@ -50,9 +50,9 @@ export default {
 };
 </script>
 <template>
-  <main>
-    <div class="container">
-      <div class="geren_tudo">
+  <main class="forms-geral-tabela">
+    <div class="forms-geral">
+      <div class="geren_tudo forms-geral">
         <div class="title">
           <h1>Gerenciamento de livros</h1>
         </div>
