@@ -63,7 +63,7 @@ export default {
             v-model="livro.titulo"
             placeholder="Título"
           />
-          <div class="select_categorias">
+         
             <select name="cat" id="categorias" v-model="livro.Categoria">
               <option disabled value="">escolha uma categoria</option>
               <option
@@ -84,7 +84,7 @@ export default {
                 {{ autor.autor }}
               </option>
             </select>
-          </div>
+          
           <div class="select_autor">
             <select v-model="livro.editora">
               <option disabled value="">escolha uma categoria</option>
