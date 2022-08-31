@@ -21,7 +21,7 @@ export default {
     };
   },
   async created() {
-    this.livros = await livrosApi.buscarTodosOsLivro();
+    this.livros = await livrosApi.buscarTodosOsLivros();
     this.autores = await autoresApi.buscarTodosOsAutores();
     this.categorias = await categoriasApi.buscarTodasAsCategorias();
     this.editoras = await editoresApi.buscarTodasAsEditoras();
@@ -33,7 +33,7 @@ export default {
       } else {
         await livrosApi.adicionarLivro(this.livro);
       }
-      this.livros = await livrosApi.buscarTodosOsLivro();
+      this.livros = await livrosApi.buscarTodosOsLivros();
       this.categorias = await categoriasApi.buscarTodasAsCategorias();
       this.editoras = await editoresApi.buscarTodasAsEditoras();
       this.autores = await autoresApi.buscarTodosOsAutores();
@@ -41,7 +41,7 @@ export default {
     },
     async excluir(livro) {
       await livrosApi.excluirLivro(livro.id);
-      this.livros = await livrosApi.buscarTodosOsLivro();
+      this.livros = await livrosApi.buscarTodosOsLivros();
     },
     editar(livro) {
       Object.assign(this.livro, livro);
@@ -64,24 +64,24 @@ export default {
             placeholder="Título"
           />
           <div class="select_categorias">
-            <select name="cat" id="categorias" v-model="livro.categoria">
+            <select name="cat" id="categorias" v-model="livro.Categoria">
               <option disabled value="">escolha uma categoria</option>
               <option
                 v-for="categoria of categorias"
                 :key="categoria.id"
-                :value="categoria.descricao"
+                :value="categoria.categoria"
               >
-                {{ categoria.descricao }}
+                {{ categoria.categoria }}
               </option>
             </select>
-            <select v-model="livro.autor">
-              <option disabled value="">escolha uma categoria</option>
+            <select v-model="livro.Autor">
+              <option disabled value="">escolha um autor</option>
               <option
                 v-for="autor of autores"
                 :key="autor.id"
-                :value="autor.nome"
+                :value="autor.autor"
               >
-                {{ autor.nome }}
+                {{ autor.autor }}
               </option>
             </select>
           </div>
@@ -91,9 +91,9 @@ export default {
               <option
                 v-for="editora of editoras"
                 :key="editora.id"
-                :value="editora.nome"
+                :value="editora.editora"
               >
-                {{ editora.nome }}
+                {{ editora.editora }}
               </option>
             </select>
           </div>

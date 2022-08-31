@@ -1,6 +1,6 @@
 import axios from "axios";
 export default class LivrosApi {
-  async buscarTodosOsLivro() {
+  async buscarTodosOsLivros() {
     const response = await axios.get("http://localhost:4000/livros");
     return response.data;
   }

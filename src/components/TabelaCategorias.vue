@@ -9,7 +9,7 @@ export default {
     };  
   },
   async created(){
-    this.categoria = await categoriasApi.buscarTodasAsCategorias();
+    this.categorias = await categoriasApi.buscarTodasAsCategorias();
   }, 
   methods: {
     async salvar() {
